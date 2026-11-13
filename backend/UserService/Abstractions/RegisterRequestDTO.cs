@@ -1,3 +1,3 @@
 namespace UserService.Abstractions;
 
-public record RegisterRequestDTO(string Email, string Password);
+public record RegisterRequestDTO(string Email, string Password, string FullName);

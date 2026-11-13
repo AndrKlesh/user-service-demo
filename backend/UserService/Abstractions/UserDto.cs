@@ -1,3 +1,3 @@
 namespace UserService.Abstractions;
 
-public record UserDto(Guid Id, string Email);
+public record UserDto(Guid Id, string Email, string FullName);
