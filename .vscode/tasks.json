@@ -1,0 +1,106 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // ─────────────────────────────────────────────────────────────
+        // BACKEND (ASP.NET Core, .slnx)
+        // ─────────────────────────────────────────────────────────────
+        {
+            "label": "backend: restore",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "restore",
+                "${workspaceFolder}\\backend\\UserService.slnx"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "backend: build",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "${workspaceFolder}\\backend\\UserService.slnx",
+                "--no-restore"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": [
+                "backend: restore"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "backend: run",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}\\backend\\UserService\\UserService.csproj",
+                "--no-build",
+                "--urls",
+                "http://localhost:5000"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": [
+                "backend: build"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "csharp",
+                "pattern": {
+                    "regexp": "^$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "Now listening on",
+                    "endsPattern": "Application started"
+                }
+            },
+            "group": "build"
+        },
+        // ─────────────────────────────────────────────────────────────
+        // FRONTEND-ПОТРЕБИТЕЛЬ (Python)
+        // ─────────────────────────────────────────────────────────────
+        {
+            "label": "frontend: run",
+            "type": "shell",
+            "command": "py",
+            "args": [
+                "${workspaceFolder}\\frontend\\user_client.py"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        // ─────────────────────────────────────────────────────────────
+        // ОБА ПРОЕКТА ОДНОВРЕМЕННО
+        // ─────────────────────────────────────────────────────────────
+        {
+            "label": "run: all",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "backend: run",
+                "frontend: run"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
