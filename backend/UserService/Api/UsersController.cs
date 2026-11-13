@@ -11,6 +11,8 @@ public class UsersController : ControllerBase
     public async Task<ActionResult<UserDto>> Register(
         [FromBody] RegisterRequestDTO request, CancellationToken ct)
     {
+        Console.WriteLine($"[register] attempt for {request.Email}");
+
         var dto = await _users.RegisterAsync(request, ct);
         return Ok(dto); // ответ: { id, email }
     }
