@@ -11,6 +11,11 @@ public class UsersController : ControllerBase
     public async Task<ActionResult<UserDto>> Register(
         [FromBody] RegisterRequestDTO request, CancellationToken ct)
     {
+        if (string.IsNullOrWhiteSpace(request.Email))
+            throw new ArgumentException("Email is required");
+        if (request.Password is { Length: < 8 })
+            throw new ArgumentException("Password too short");
+
         var dto = await _users.RegisterAsync(request, ct);
         return Ok(dto); // ответ: { id, email }
     }
