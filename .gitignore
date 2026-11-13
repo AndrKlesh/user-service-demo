@@ -1,0 +1,68 @@
+# ── .NET / ASP.NET Core ─────────────────────────────────────
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.slnx.bak
+.vs/
+artifacts/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+*.dll
+*.pdb
+*.cache
+project.lock.json
+project.fragment.lock.json
+*.db
+*.db-shm
+*.db-wal
+
+# ── Python ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# ── IDE / редакторы ─────────────────────────────────────────
+.idea/
+*.iml
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# ── ОС ──────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Локальные секреты / окружение ───────────────────────────
+.env
+.env.*
+!.env.example
+appsettings.Development.local.json
+*.local.json
+
+# ── Логи и временные файлы ──────────────────────────────────
+*.log
+logs/
+tmp/
+*.tmp
